@@ -1,6 +1,6 @@
 //
 //  CoordinateListStoreState.swift
-//  LayeredModule
+//  ohaken-redux
 //
 //  Created by ohayoukenchan on 2025/01/28.
 //

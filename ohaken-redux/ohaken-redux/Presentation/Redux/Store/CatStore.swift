@@ -1,6 +1,6 @@
 //
 //  CatStore.swift
-//  LayeredModule
+//  ohaken-redux
 //
 //  Created by ohayoukenchan on 2024/11/21.
 //
