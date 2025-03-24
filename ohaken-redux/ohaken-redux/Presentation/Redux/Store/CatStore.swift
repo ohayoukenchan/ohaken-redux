@@ -27,22 +27,26 @@ final class CatStore: ObservableObject, Dispatchable {
     }
 
     func dispatch(_ action: CatAction) async {
-        let currentState = createCatState()
+        await recursiveDispatch(action)
+    }
 
-        let dispatchClosure: @MainActor @Sendable (CatAction) async -> Void = { [weak self] newAction in
-            guard let self else { return }
-            await self.dispatch(newAction)
-        }
+    private func recursiveDispatch(_ newAction: CatAction) async {
+        let currentState = createCatState()
+        let newState = catReducer(action: newAction, state: currentState)
+        apply(state: newState)
 
         await middleware.handleAction(
-            action: action,
-            state: currentState,
-            dispatch: dispatchClosure
+            action: newAction,
+            state: newState,
+            dispatch: { await self.recursiveDispatch($0) }
         )
+    }
 
-        // Reducerに新しいstateを生成させて反映する
-        let newState = catReducer(action: action, state: currentState)
-        CatStore.shared.apply(state: newState)
+    func createCatState() -> CatStoreState {
+        CatStoreState(
+            cat: cat,
+            loadingState: loadingState
+        )
     }
 
     func apply(state: CatStoreState) {
@@ -50,18 +54,5 @@ final class CatStore: ObservableObject, Dispatchable {
         self.loadingState = state.loadingState
     }
 
-//    func setCat(_ cat: Cat) {
-//        self.cat = cat
-//    }
-//
-//    func setLoadingState(_ loadingState: LoadingState) {
-//        self.loadingState = loadingState
-//    }
 
-    private func createCatState() -> CatStoreState {
-        CatStoreState(
-            cat: cat,
-            loadingState: loadingState
-        )
-    }
 }
