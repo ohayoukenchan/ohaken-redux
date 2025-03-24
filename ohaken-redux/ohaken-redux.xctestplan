@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "E0C1048D-D1C3-4572-9AF3-984EC1904476",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ohaken-redux.xcodeproj",
+      "identifier" : "3A7D00962D8D69DF00170E68",
+      "name" : "ohaken-redux"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ohaken-redux.xcodeproj",
+        "identifier" : "3A7D00A62D8D69E100170E68",
+        "name" : "ohaken-reduxTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -19,6 +19,7 @@
 /* Begin PBXFileReference section */
 		3A7D00972D8D69DF00170E68 /* ohaken-redux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ohaken-redux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7D00A72D8D69E100170E68 /* ohaken-reduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ohaken-reduxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A8963F12D90E47400D5E3B0 /* ohaken-redux.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ohaken-redux.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -55,6 +56,7 @@
 		3A7D008E2D8D69DF00170E68 = {
 			isa = PBXGroup;
 			children = (
+				3A8963F12D90E47400D5E3B0 /* ohaken-redux.xctestplan */,
 				3A7D00992D8D69DF00170E68 /* ohaken-redux */,
 				3A7D00AA2D8D69E100170E68 /* ohaken-reduxTests */,
 				3A7D00982D8D69DF00170E68 /* Products */,
