@@ -41,7 +41,7 @@ final class CatStore: ObservableObject, Dispatchable {
         )
 
         // middleware の処理が完了した後にリデューサーを実行
-        coordinateListReducer(action: action, state: storeState)
+        catReducer(action: action, state: storeState)
     }
 
     func setCat(_ cat: Cat) {
