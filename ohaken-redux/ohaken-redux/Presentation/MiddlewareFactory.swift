@@ -9,7 +9,7 @@
 struct MiddleWareFactory {
     public static func createCatMiddleware() -> CatMiddleware {
         CatMiddlewareImpl(
-            useCase: CatUseCase()
+            useCase: CatUseCaseImpl()
         )
     }
 }

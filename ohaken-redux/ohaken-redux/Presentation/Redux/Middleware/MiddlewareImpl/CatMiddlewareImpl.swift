@@ -11,7 +11,7 @@ class CatMiddlewareImpl: CatMiddleware {
 
     private let useCase: CatUseCase
 
-    public init(useCase: CatUseCase) {
+    public init(useCase: CatUseCase = CatUseCaseImpl()) {
         self.useCase = useCase
     }
 
