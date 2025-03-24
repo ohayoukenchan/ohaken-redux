@@ -6,15 +6,15 @@
 //
 //
 
-@MainActor
-func catReducer(action: CatAction, state: CatStoreState) {
+func catReducer(action: CatAction, state: CatStoreState) -> CatStoreState {
+    var newState = state
     switch action {
     case .fetchCat:
-        // APICallするのはMiddlewareの役割のため何もしない
-        break
+        break // Middlewareに任せる
     case .setCat(let cat):
-        CatStore.shared.setCat(cat)
+        newState.cat = cat
     case .setLoadingState(let loadingState):
-        CatStore.shared.setLoadingState(loadingState)
+        newState.loadingState = loadingState
     }
+    return newState
 }

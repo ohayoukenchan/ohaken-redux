@@ -27,7 +27,7 @@ final class CatStore: ObservableObject, Dispatchable {
     }
 
     func dispatch(_ action: CatAction) async {
-        let storeState = createCatState()
+        let currentState = createCatState()
 
         let dispatchClosure: @MainActor @Sendable (CatAction) async -> Void = { [weak self] newAction in
             guard let self else { return }
@@ -36,25 +36,32 @@ final class CatStore: ObservableObject, Dispatchable {
 
         await middleware.handleAction(
             action: action,
-            state: storeState,
+            state: currentState,
             dispatch: dispatchClosure
         )
 
-        // middleware の処理が完了した後にリデューサーを実行
-        catReducer(action: action, state: storeState)
+        // Reducerに新しいstateを生成させて反映する
+        let newState = catReducer(action: action, state: currentState)
+        CatStore.shared.apply(state: newState)
     }
 
-    func setCat(_ cat: Cat) {
-        self.cat = cat
+    func apply(state: CatStoreState) {
+        self.cat = state.cat
+        self.loadingState = state.loadingState
     }
 
-    func setLoadingState(_ loadingState: LoadingState) {
-        self.loadingState = loadingState
-    }
+//    func setCat(_ cat: Cat) {
+//        self.cat = cat
+//    }
+//
+//    func setLoadingState(_ loadingState: LoadingState) {
+//        self.loadingState = loadingState
+//    }
 
     private func createCatState() -> CatStoreState {
         CatStoreState(
-            cat: cat
+            cat: cat,
+            loadingState: loadingState
         )
     }
 }

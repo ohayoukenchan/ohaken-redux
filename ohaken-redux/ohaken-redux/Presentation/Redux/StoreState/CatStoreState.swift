@@ -8,4 +8,5 @@
 
 struct CatStoreState {
     var cat: Cat?
+    var loadingState: LoadingState = .idle
 }
