@@ -7,9 +7,26 @@
 //
 import SwiftUI
 
+/// 猫の情報を Redux 風アーキテクチャで表示する SwiftUI ビュー。
+///
+/// `ReduxCat` は `ReduxCatViewState` を監視し、状態に応じて UI を切り替えます。
+/// ビュー表示時に `.fetchCat` アクションを自動でディスパッチし、
+/// 非同期で猫の画像を取得します。
+///
+/// - 表示内容:
+///   - `idle`: 初期状態を示すテキスト表示。
+///   - `loading`: 読み込み中インジケーター（`ProgressView`）。
+///   - `success`: 取得した猫の画像を表示（なければ "No cat"）。
+///   - `error`: エラーメッセージを表示。
+///
+/// - Note: このビューは `ReduxCatViewState<CatActionDispatcher>` を外部から受け取ります。
 struct ReduxCat: View {
+    /// 状態およびアクションディスパッチャを保持する `@ObservedObject`。
     @ObservedObject private var viewState: ReduxCatViewState<CatActionDispatcher>
 
+    /// `ReduxCat` ビューの初期化。
+    ///
+    /// - Parameter viewState: 状態管理とアクションディスパッチャを含むオブジェクト。
     public init(viewState: ReduxCatViewState<CatActionDispatcher>) {
         self.viewState = viewState
     }
@@ -36,6 +53,7 @@ struct ReduxCat: View {
         }
     }
 }
+
 
 #Preview {
     ReduxCat(viewState: ReduxCatViewState(actionDispatcher: CatActionDispatcher()))
